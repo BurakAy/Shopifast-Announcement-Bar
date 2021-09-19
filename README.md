@@ -1,7 +1,8 @@
 # Shopifast-Announcement-Bar
-An end user customizable announcement bar for Shopify themes
+An end user customizable announcement bar for Shopify themes.
 
 This announcemnt bar features a number of end user configurable settings from the Shopify Customize GUI.
+
 Settings include:
 - Enable or disable bar
 - Show bar on homepage only
