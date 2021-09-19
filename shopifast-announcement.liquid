@@ -1,0 +1,333 @@
+{%- if section.settings.shopifast_announcement_enable -%}
+{%- if section.settings.shopifast_announcement_home_page_only == false or request.page_type == 'index' -%}
+  <style>
+    .shopifast-announcement-bar {
+      background-color: {{ section.settings.shopifast_announcement_color_bg }};
+
+	  {%- if section.settings.shopifast_announcement_image_bg -%}
+      background-image: url("{{ section.settings.shopifast_announcement_image_bg | img_url: '600x' }}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center top;
+      {%- endif -%}
+        
+	  display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+	  width: 100%;
+      height: {{ section.settings.shopifast_announcement_bar_height }}px;
+	  top: 0;
+    }
+      
+    .shopifast-announcement-bar__link {
+      width: 100%; 
+    }
+
+    .shopifast-announcement-bar__message {
+      color: {{ section.settings.shopifast_announcement_color_font }};
+      font-family: {{ section.settings.shopifast_announcement_font.family }}, {{ section.settings.shopifast_announcement_font.fallback_families }};
+      font-size: {{ section.settings.shopifast_announcement_font_size }}px;
+      text-align: center;
+      padding: 10px 20px;
+      
+	  {%- unless section.settings.shopifast_announcement_scroll == false -%}
+        {%- if section.settings.shopifast_announcement_scroll_direction == "rl" -%}
+        -moz-animation: shopifastMarqueeRL {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        -webkit-animation: shopifastMarqueeRL {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        animation: shopifastMarqueeRL {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        {%- elsif section.settings.shopifast_announcement_scroll_direction == "lr" -%}
+        -moz-animation: shopifastMarqueeLR {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        -webkit-animation: shopifastMarqueeLR {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        animation: shopifastMarqueeLR {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        {%- elsif section.settings.shopifast_announcement_scroll_direction == "td" -%}
+        -moz-animation: shopifastMarqueeTD {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        -webkit-animation: shopifastMarqueeTD {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        animation: shopifastMarqueeTD {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        {%- elsif section.settings.shopifast_announcement_scroll_direction == "du" -%}
+        -moz-animation: shopifastMarqueeDU {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        -webkit-animation: shopifastMarqueeDU {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        animation: shopifastMarqueeDU {{ section.settings.shopifast_announcement_scroll_speed }}s linear infinite;
+        {%- endif -%}
+	  {%- endunless -%}
+    }
+
+    {%- unless section.settings.shopifast_announcement_scroll == false -%}
+    @-moz-keyframes shopifastMarqueeRL {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    @-webkit-keyframes shopifastMarqueeRL {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    @keyframes shopifastMarqueeRL {
+      0% {
+        -moz-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%)
+      }
+      100% {
+        -moz-transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+      }
+    }
+    
+    @-moz-keyframes shopifastMarqueeLR {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+    @-webkit-keyframes shopifastMarqueeLR {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+    @keyframes shopifastMarqueeLR {
+      0% {
+        -moz-transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%)
+      }
+      100% {
+        -moz-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+      }
+    }
+    
+	  @-moz-keyframes shopifastMarqueeTD {
+	    0% {
+	      transform: translateY(-100%);
+	    }
+	    100% {
+	      transform: translateY(100%);
+	    }
+	  }
+    @-webkit-keyframes shopifastMarqueeTD {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+    @keyframes shopifastMarqueeTD {
+      0% {
+        -moz-transform: translateY(-100%);
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%)
+      }
+      100% {
+        -moz-transform: translateY(100%);
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%);
+      }
+    }
+    
+    @-moz-keyframes shopifastMarqueeDU {
+      0% {
+        transform: translateY(100%);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+    @-webkit-keyframes shopifastMarqueeDU {
+      0% {
+        transform: translateY(100%);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+    @keyframes shopifastMarqueeDU {
+      0% {
+        -moz-transform: translateY(100%);
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%)
+      }
+      100% {
+        -moz-transform: translateY(-100%);
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+      }
+    }
+    {%- endunless -%}
+  </style>
+
+  <div class="shopifast-announcement-bar" role="region" aria-label="{{ 'sections.header.announcement_bar_label' | t }}">
+    {%- unless section.settings.shopifast_announcement_message_link == blank -%}
+    <a href="{{ section.settings.shopifast_announcement_message_link }}" class="shopifast-announcement-bar__link">
+    {%- endunless -%}
+      <p class="shopifast-announcement-bar__message">{{ section.settings.shopifast_announcement_message_text | escape }}</p>
+    {%- unless section.settings.shopifast_announcement_message_link == blank -%}
+    </a>
+    {%- endunless -%}
+  </div>
+{%- endif -%}
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Shopifast Announcement",
+    "settings": [{
+            "type": "header",
+            "content": "Bar display settings"
+        },
+        {
+            "type": "checkbox",
+            "id": "shopifast_announcement_enable",
+            "label": {
+                "en": "Show announcement"
+            },
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "shopifast_announcement_home_page_only",
+            "label": {
+                "en": "Home page only"
+            },
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": "Text settings"
+        },
+        {
+            "type": "text",
+            "id": "shopifast_announcement_message_text",
+            "label": {
+                "en": "Announcement text"
+            },
+            "default": {
+                "en": "Announce something here"
+            }
+        },
+        {
+            "type": "font_picker",
+            "id": "shopifast_announcement_font",
+            "label": {
+                "en": "Font"
+            },
+            "default": "roboto_n4"
+        },
+        {
+            "type": "color",
+            "id": "shopifast_announcement_color_font",
+            "label": {
+                "en": "Font color"
+            },
+            "default": "#ffffff"
+        },
+        {
+            "type": "range",
+            "id": "shopifast_announcement_font_size",
+            "min": 12,
+            "max": 25,
+            "step": 1,
+            "label": "Font size",
+            "unit": "px",
+            "default": 16
+        },
+        {
+            "type": "header",
+            "content": "Bar settings"
+        },
+        {
+            "type": "url",
+            "id": "shopifast_announcement_message_link",
+            "label": {
+                "en": "Bar link"
+            }
+        },
+        {
+            "type": "range",
+            "id": "shopifast_announcement_bar_height",
+            "min": 12,
+            "max": 75,
+            "step": 1,
+            "label": "Bar height",
+            "unit": "px",
+            "default": 50
+        },
+        {
+            "type": "color",
+            "id": "shopifast_announcement_color_bg",
+            "label": {
+                "en": "Bar background color"
+            },
+            "default": "#3a3a3a"
+        },
+        {
+            "type": "image_picker",
+            "id": "shopifast_announcement_image_bg",
+            "label": {
+                "en": "Bar background image"
+            }
+        },
+        {
+            "type": "header",
+            "content": "Scrolling text settings"
+        },
+        {
+            "type": "checkbox",
+            "id": "shopifast_announcement_scroll",
+            "label": {
+                "en": "Enable text scrolling"
+            },
+            "default": false
+        },
+        {
+            "type": "range",
+            "id": "shopifast_announcement_scroll_speed",
+            "min": 5,
+            "max": 25,
+            "step": 1,
+            "label": "Text scroll speed",
+            "default": 15,
+            "info": "Lower number is faster"
+        },
+        {
+            "type": "radio",
+            "id": "shopifast_announcement_scroll_direction",
+            "label": "Text scroll direction",
+            "options": [{
+                    "value": "rl",
+                    "label": "Right to left"
+                },
+                {
+                    "value": "lr",
+                    "label": "Left to right"
+                },
+                {
+                    "value": "td",
+                    "label": "Top down"
+                },
+                {
+                    "value": "du",
+                    "label": "Down up"
+                }
+            ],
+            "default": "rl"
+        }
+    ]
+  }
+{% endschema %}
