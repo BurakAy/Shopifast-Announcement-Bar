@@ -170,6 +170,12 @@
       }
     }
     {%- endunless -%}
+
+    @media screen and (max-width: 500px) {
+      .shopifast-announcement-bar__message {
+        padding: 0 10px;
+      }
+    }
   </style>
 
   <div class="shopifast-announcement-bar" role="region" aria-label="{{ 'sections.header.announcement_bar_label' | t }}">
